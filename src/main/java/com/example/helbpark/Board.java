@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Board {
@@ -116,7 +117,7 @@ public class Board {
     {
         String vehicleType = vehicle.getVehicleType();
         String licencePlate = vehicle.getLicencePlate();
-        int ticketPrice = vehicle.getTicketPrice();
+        double ticketPrice = calculateTotalPrice(vehicle);
 
         for(ParkingPlace parkingPlace : parking)
         {
@@ -139,6 +140,28 @@ public class Board {
         }
 
         updateParkingView();
+    }
+
+    public double calculateTotalPrice(Vehicle vehicle)
+    {
+        String currentDay = LocalDate.now().getDayOfWeek().name(); //récupère le jour de la semaine
+        
+        Bill bill;
+
+        if(currentDay.equals("TUESDAY"))
+            bill = new Bill(new HalfPriceMotorcycle());
+        else if(currentDay.equals("WEDNESDAY"))
+            bill = new Bill(new DiscountCarP());
+        else if(currentDay.equals("FRIDAY"))
+            bill = new Bill(new HalfPriceTruck());
+        else if(currentDay.equals("FRIDAY"))
+            bill = new Bill(new HalfPricePairDay());
+        else
+            bill = new Bill(new BasicPrice());
+
+        double totalPrice = bill.executePriceStrategy(vehicle);
+
+        return totalPrice;
     }
 
     public void updateParkingView()

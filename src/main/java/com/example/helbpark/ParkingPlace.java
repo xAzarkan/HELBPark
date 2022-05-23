@@ -7,7 +7,7 @@ public class ParkingPlace {
     private String vehicleType;
     private String licencePlate;
 
-    private int pricePlace;
+    private double pricePlace;
 
     public ParkingPlace(int placeNumber) {
         this.placeNumber = placeNumber;
@@ -35,7 +35,7 @@ public class ParkingPlace {
         isAvailable = available;
     }
 
-    public void setInformations(String vehicleType, String licencePlate, int pricePlace){
+    public void setInformations(String vehicleType, String licencePlate, double pricePlace){
         this.vehicleType = vehicleType;
         this.licencePlate = licencePlate;
         this.pricePlace = pricePlace;
@@ -55,7 +55,7 @@ public class ParkingPlace {
         this.pricePlace = pricePlace;
     }
 
-    public int getPricePlace()
+    public double getPricePlace()
     {
         return pricePlace;
     }
