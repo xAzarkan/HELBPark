@@ -23,12 +23,9 @@ public class ParkingView {
     private final String STYLE_CAR_BUTTON = "-fx-background-color: #ff5959;" + FONT_SIZE;
     private final String STYLE_TRUCK_BUTTON = "-fx-background-color: #855bd7;" + FONT_SIZE;
 
-
     private GridPane layout;
-    private int numberOfPlaces;
 
     private ArrayList<Button> listOfButtons;
-
 
     private String styleLayout = "-fx-background-color: #525151;";
 
@@ -38,44 +35,37 @@ public class ParkingView {
 
     private String styleAvailableParkingPlace = "-fx-background-color: #7fd95f;" + FONT_SIZE;
 
-    public void initParkingView(ArrayList<ParkingPlace> parkingPlaces){
-        numberOfPlaces = parkingPlaces.size();
+    public ParkingView(){
+        listOfButtons = new ArrayList<>();
+    }
+
+
+    public void initParkingView(String placeNumber){
 
         layout = new GridPane();
         layout.setStyle(styleLayout);
-
-        listOfButtons = new ArrayList<>();
 
         GridPane parkingGridPane = new GridPane();
         parkingGridPane.setStyle(styleParkingGridPane);
         parkingGridPane.setHgap(GAP_BETWEEN_BUTTONS);
         parkingGridPane.setVgap(GAP_BETWEEN_BUTTONS);
 
-        for(ParkingPlace parkingPlace : parkingPlaces)
-        {
-            String placeNumber = String.valueOf(parkingPlace.getPlaceNumber());
 
-            Button button = new Button(placeNumber);
-            //vert car la place sera obligatoirement libre au début
-            button.setStyle(styleAvailableParkingPlace);
-            button.setId(placeNumber);
+        Button button = new Button(placeNumber);
+        //vert car la place sera obligatoirement libre au début
 
-            button.setOnAction(e -> {
-                onButtonClick(parkingPlace);
-            });
+        button.setId(placeNumber);
+        button.setPrefWidth(BUTTON_WIDTH);
+        button.setPrefHeight(BUTTON_HEIGHT);
 
-            button.setPrefWidth(BUTTON_WIDTH);
-            button.setPrefHeight(BUTTON_HEIGHT);
-
-            listOfButtons.add(button);
-        }
+        listOfButtons.add(button);
 
         int row = 0;
         int col = 0;
 
-        for(Button button : listOfButtons)
+        for(Button btn : listOfButtons)
         {
-            parkingGridPane.add(button, col, row); //ajout du bouton dans le gridpane
+            parkingGridPane.add(btn, col, row); //ajout du bouton dans le gridpane
 
             if(col < NUMBER_OF_COLUMNS)
             {
@@ -92,19 +82,17 @@ public class ParkingView {
         layout.setAlignment(Pos.CENTER);
     }
 
-    public void setButtonInformations(ParkingPlace parkingPlace, int placeNumber, String vehicleType, String licencePlate)
-    {
+    public void setButtonInformations(ParkingPlaceController parkingPlaceController, Boolean isAvailable, String placeNumber, String vehicleType, String licencePlate) {
         String style = "";
 
         for(Button button : listOfButtons)
         {
-            if(button.getId().equals(String.valueOf(placeNumber)))
+            if(button.getId().equals(placeNumber))
             {
-                if(parkingPlace.isAvailable())
+                if(isAvailable)
                 {
-                    button.setText(String.valueOf(placeNumber));
+                    button.setText(placeNumber);
                     style = styleAvailableParkingPlace;
-
                 }
                 else
                 {
@@ -125,7 +113,7 @@ public class ParkingView {
                 }
 
                 button.setOnAction(e -> {
-                    onButtonClick(parkingPlace);
+                    parkingPlaceController.onButtonClick();
                 });
 
                 button.setStyle(style);
@@ -133,74 +121,8 @@ public class ParkingView {
         }
     }
 
-    public void onButtonClick(ParkingPlace parkingPlace)
-    {
-        final int BUTTON_WIDTH = 200;
-        final int BUTTON_HEIGHT = 30;
-        final int LAYOUT_HEIGHT = 200;
-        final String STYLE_LABEL = FONT_SIZE;
-
-        final String vehicleType = parkingPlace.getVehicleType();
-        final String licencePlate = parkingPlace.getLicencePlate();
-        final String placeNumber = String.valueOf(parkingPlace.getPlaceNumber());
-        final String pricePlace = String.valueOf(parkingPlace.getPricePlace());
-
-        String placeState = "";
-
-        if(parkingPlace.isAvailable())
-            placeState = "Free";
-        else
-            placeState = "Occupied";
-
-        Label labelPlaceState = new Label("Status : " + placeState);
-        Label labelPlaceNumber = new Label("Place number : " + placeNumber);
-        Label labelVehicleType = new Label("Type of vehicle : " + vehicleType);
-        Label labelLicencePlate = new Label("Licence plate : " + licencePlate);
-        Label labelPricePlace = new Label("Total to pay : " + pricePlace + " €");
-
-        labelPlaceNumber.setStyle(STYLE_LABEL);
-        labelVehicleType.setStyle(STYLE_LABEL);
-        labelLicencePlate.setStyle(STYLE_LABEL);
-        labelPlaceState.setStyle(STYLE_LABEL);
-        labelPricePlace.setStyle(STYLE_LABEL);
-
-        Button submitButton = new Button("Set the place free");
-        submitButton.setPrefWidth(BUTTON_WIDTH);
-        submitButton.setPrefHeight(BUTTON_HEIGHT);
-
-        VBox mainLayout = new VBox(LAYOUT_HEIGHT);
-        VBox layout;
-
-        if(parkingPlace.isAvailable())
-        {
-            layout = new VBox(labelPlaceState, labelPlaceNumber);
-            layout.setAlignment(Pos.TOP_CENTER);
-        }
-        else{
-            layout = new VBox(labelPlaceState, labelPlaceNumber, labelVehicleType, labelLicencePlate, labelPricePlace);
-            layout.setAlignment(Pos.TOP_CENTER);
-        }
-
-        mainLayout.getChildren().addAll(layout, submitButton);
-        mainLayout.setAlignment(Pos.TOP_CENTER);
-
-        Scene secondScene = new Scene(mainLayout, 400, 400);
-
-        // New window (Stage)
-        Stage newWindow = new Stage();
-        newWindow.setTitle("Edit parking place");
-        newWindow.setScene(secondScene);
-
-        // Set position of second window, related to primary window.
-        newWindow.setX(300);
-        newWindow.setY(300);
-
-        newWindow.show();
-
-        submitButton.setOnAction(event -> {
-            parkingPlace.setAvailability(true);
-            newWindow.close();
-        });
+    public void updateParkingPlace(ParkingPlaceController parkingPlaceController, String placeNumber, Boolean isAvailable, String vehicleType, String licencePlate){
+        setButtonInformations(parkingPlaceController, isAvailable, placeNumber, vehicleType, licencePlate);
     }
 
 

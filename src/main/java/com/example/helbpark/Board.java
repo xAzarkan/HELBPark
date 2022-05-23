@@ -23,7 +23,6 @@ public class Board {
     public Board()
     {
         initApp();
-        initView();
         readSimFileContent();
     }
 
@@ -32,34 +31,28 @@ public class Board {
         parking = new ArrayList<>();
         parkingPlaceControllers = new ArrayList<>();
 
-        //création de la vue permettant d'afficher les places de parking
-        ParkingPlaceView parkingPlaceView = new ParkingPlaceView();
-
         //création des places de parking
         for(int placeNumber = 1; placeNumber <= NUMBER_OF_PLACES; placeNumber++)
         {
             parking.add(new ParkingPlace(placeNumber));
         }
 
+        //création de la vue permettant d'afficher le parking
+        parkingView = new ParkingView();
+
         //création d'un controller pour chaque place de parking
         for(ParkingPlace parkingPlace : parking)
         {
-            parkingPlaceControllers.add(new ParkingPlaceController(parkingPlace, parkingPlaceView));
+            parkingPlaceControllers.add(new ParkingPlaceController(parkingPlace, parkingView));
+            parkingView.initParkingView(String.valueOf(parkingPlace.getPlaceNumber()));
         }
-    }
-
-    public void initView()
-    {
-        //méthode permettant d'initialiser la vue de base
-        parkingView = new ParkingView();
-        parkingView.initParkingView(parking);
 
         updateParkingView();
     }
 
     public void readSimFileContent()
     {
-        //lecture du fichie de simulation
+        //lecture du fichier de simulation
 
         try{
             //String simFilePath = new File("simfile.txt").getAbsolutePath();
@@ -153,7 +146,7 @@ public class Board {
         //mise à jour de la vue
         for(ParkingPlaceController parkingPlaceController : parkingPlaceControllers)
         {
-            parkingPlaceController.updateView(parkingView);
+            parkingPlaceController.updateView();
         }
     }
 
