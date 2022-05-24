@@ -10,8 +10,6 @@ public abstract class Vehicle {
 
     public abstract String getVehicleType();
 
-    public abstract int getTicketPrice();
-
     public void setLicencePlate(String licencePlate)
     {
         this.licencePlate = licencePlate;

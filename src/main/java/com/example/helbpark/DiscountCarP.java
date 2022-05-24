@@ -5,11 +5,11 @@ public class DiscountCarP implements PriceStrategy{
     double discount = 0.25; //25% de reduction
 
     @Override
-    public double getTotalPrice(Vehicle vehicle)
+    public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)
     {
-        double totalPrice = vehicle.getTicketPrice();
+        double totalPrice = basicPrice;
 
-        if(vehicle.getLicencePlate().contains("P"))
+        if(licencePlate.contains("P"))
         { //plaque d'immatriculation contient la lettre P
             totalPrice = totalPrice * discount;
         }

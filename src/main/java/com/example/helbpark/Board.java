@@ -8,24 +8,30 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.*;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board {
 
     private final int NUMBER_OF_PLACES = 20;
+
     private ArrayList<ParkingPlace> parking;
     private ArrayList<ParkingPlaceController> parkingPlaceControllers; //chaque place de parking possède son controller
     private ParkingView parkingView;
     private ArrayList<String> simFileContent;
-    public static int indexOfSimFileContent = 0;
-    public static int elapsedSeconds = 0;
+    public int indexOfSimFileContent = 0;
+    public int elapsedSeconds = 0;
+
+    public String discountType;
 
     public Board()
     {
         initApp();
         readSimFileContent();
     }
+
 
     public void initApp()
     {
@@ -51,8 +57,7 @@ public class Board {
         updateParkingView();
     }
 
-    public void readSimFileContent()
-    {
+    public void readSimFileContent() {
         //lecture du fichier de simulation
 
         try{
@@ -79,8 +84,10 @@ public class Board {
         createVehicles();
     }
 
-    public void createVehicles()
-    {
+    public void createVehicles() {
+        //cette fonction permet de créer des véhicules à partir de ce qui a été récupérer
+        //du fichier de simulation
+
         Timeline everySecondTimeLine = new Timeline(
                 new KeyFrame(Duration.seconds(1),
                         new EventHandler<ActionEvent>() {
@@ -113,17 +120,19 @@ public class Board {
         everySecondTimeLine.play();
     }
 
-    public void parkVehicle(Vehicle vehicle)
-    {
-        String vehicleType = vehicle.getVehicleType();
-        String licencePlate = vehicle.getLicencePlate();
-        double ticketPrice = calculateTotalPrice(vehicle);
+    public void parkVehicle(Vehicle vehicle) {
+
+        //cette fonction permet de garer un vehicule dans une place qui est libre
 
         for(ParkingPlace parkingPlace : parking)
         {
             if(parkingPlace.isAvailable())
             {
                 parkingPlace.setAvailability(false);
+
+                String vehicleType = vehicle.getVehicleType();
+                String licencePlate = vehicle.getLicencePlate();
+                double ticketPrice = calculateTotalPrice(vehicle);
 
                 /* Traduction des types de véhicules fr --> anglais */
                 if(vehicleType.equals("moto"))
@@ -134,7 +143,9 @@ public class Board {
                     vehicleType = "Truck";
                 /* -------------------------------------------------- */
 
-                parkingPlace.setInformations(vehicleType, licencePlate, ticketPrice);
+                GameTicket gameTicket = generateGameTicket(vehicleType);
+
+                parkingPlace.setInformations(vehicleType, licencePlate, ticketPrice, discountType, gameTicket);
                 break;
             }
         }
@@ -142,31 +153,89 @@ public class Board {
         updateParkingView();
     }
 
-    public double calculateTotalPrice(Vehicle vehicle)
+    public GameTicket generateGameTicket(String vehicleType)
     {
+        final int MAX_RANDOM_VALUE = 10;
+        GameTicket gameTicket;
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(MAX_RANDOM_VALUE);
+
+        int CHANCE = 4;
+
+        if(randomNumber >= CHANCE){
+            //chaque véhicule a plus de chance d'obtenir un certain ticket
+            if(vehicleType.equals("Motorcycle"))
+                gameTicket = new StandardGameTicket();
+            else if(vehicleType.equals("Car"))
+                gameTicket = new SilverGameTicket();
+            else
+                gameTicket = new GoldGameTicket();
+        }
+        else{
+            if(vehicleType.equals("Motorcycle")) {
+                if(randomNumber%2 == 0)
+                    gameTicket = new SilverGameTicket();
+                else
+                    gameTicket = new GoldGameTicket();
+            }
+            else if(vehicleType.equals("Car")){
+                if(randomNumber%2 == 0)
+                    gameTicket = new StandardGameTicket();
+                else
+                    gameTicket = new GoldGameTicket();
+            }
+            else{
+                if(randomNumber%2 == 0)
+                    gameTicket = new StandardGameTicket();
+                else
+                    gameTicket = new SilverGameTicket();
+            }
+        }
+        return gameTicket;
+    }
+
+    public double calculateTotalPrice(Vehicle vehicle) {
+
+        double totalPrice;
+
         String currentDay = LocalDate.now().getDayOfWeek().name(); //récupère le jour de la semaine
-        
-        Bill bill;
+
+        PlacePrice placePrice;
 
         if(currentDay.equals("TUESDAY"))
-            bill = new Bill(new HalfPriceMotorcycle());
+        {
+            placePrice = new PlacePrice(new HalfPriceMotorcycle());
+            discountType = "Tuesday : Half price for motorcycles";
+        }
         else if(currentDay.equals("WEDNESDAY"))
-            bill = new Bill(new DiscountCarP());
+        {
+            placePrice = new PlacePrice(new DiscountCarP());
+            discountType = "Wednesday : 25% discount for vehicles whose license plate contains the letter P";
+        }
         else if(currentDay.equals("FRIDAY"))
-            bill = new Bill(new HalfPriceTruck());
-        else if(currentDay.equals("FRIDAY"))
-            bill = new Bill(new HalfPricePairDay());
+        {
+            placePrice = new PlacePrice(new HalfPriceTruck());
+            discountType = "Friday : Half price for trucks";
+        }
+        else if(currentDay.equals("SATURDAY"))
+        {
+            placePrice = new PlacePrice(new HalfPriceEvenDay());
+            discountType = "Saturday : If the day is even, half price, otherwise base price.";
+        }
         else
-            bill = new Bill(new BasicPrice());
+        {
+            placePrice = new PlacePrice(new BasicPrice());
+            discountType = currentDay + " : Base price";
+        }
 
-        double totalPrice = bill.executePriceStrategy(vehicle);
+        totalPrice = placePrice.executePriceStrategy(vehicle);
 
         return totalPrice;
     }
 
-    public void updateParkingView()
-    {
-        //mise à jour de la vue
+    public void updateParkingView() {
+        //mise à jour de la vue avec le controller
         for(ParkingPlaceController parkingPlaceController : parkingPlaceControllers)
         {
             parkingPlaceController.updateView();

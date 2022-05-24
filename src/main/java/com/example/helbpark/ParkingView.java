@@ -1,12 +1,8 @@
 package com.example.helbpark;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -16,15 +12,12 @@ public class ParkingView {
 
     private final int NUMBER_OF_COLUMNS = 4;
     private final int GAP_BETWEEN_BUTTONS = 10;
-
     private final String FONT_SIZE = "-fx-font-size: 21px;";
 
     private final String STYLE_MOTORCYCLE_BUTTON = "-fx-background-color: #5fd9c3;" + FONT_SIZE;
     private final String STYLE_CAR_BUTTON = "-fx-background-color: #ff5959;" + FONT_SIZE;
     private final String STYLE_TRUCK_BUTTON = "-fx-background-color: #855bd7;" + FONT_SIZE;
-
     private GridPane layout;
-
     private ArrayList<Button> listOfButtons;
 
     private String styleLayout = "-fx-background-color: #525151;";
@@ -43,6 +36,7 @@ public class ParkingView {
     public void initParkingView(String placeNumber){
 
         layout = new GridPane();
+
         layout.setStyle(styleLayout);
 
         GridPane parkingGridPane = new GridPane();
@@ -78,11 +72,13 @@ public class ParkingView {
             }
         }
 
+
         layout.getChildren().add(parkingGridPane);
         layout.setAlignment(Pos.CENTER);
     }
 
-    public void setButtonInformations(ParkingPlaceController parkingPlaceController, Boolean isAvailable, String placeNumber, String vehicleType, String licencePlate) {
+    public void updateParkingPlace(ParkingPlaceController parkingPlaceController, String placeNumber, Boolean isAvailable, String vehicleType, String licencePlate){
+
         String style = "";
 
         for(Button button : listOfButtons)
@@ -119,10 +115,6 @@ public class ParkingView {
                 button.setStyle(style);
             }
         }
-    }
-
-    public void updateParkingPlace(ParkingPlaceController parkingPlaceController, String placeNumber, Boolean isAvailable, String vehicleType, String licencePlate){
-        setButtonInformations(parkingPlaceController, isAvailable, placeNumber, vehicleType, licencePlate);
     }
 
 

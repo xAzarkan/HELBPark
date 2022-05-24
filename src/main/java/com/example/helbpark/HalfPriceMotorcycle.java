@@ -5,11 +5,11 @@ public class HalfPriceMotorcycle implements PriceStrategy{
     double discount = 0.5; //50% de réduction
 
     @Override
-    public double getTotalPrice(Vehicle vehicle)
+    public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)
     {
-        double totalPrice = vehicle.getTicketPrice();
+        double totalPrice = basicPrice;
 
-        if(vehicle.getVehicleType().equals("Motorcycle")){
+        if(vehicleType.equals("Motorcycle")){
             totalPrice = totalPrice * discount;
         }
 

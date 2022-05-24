@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 public class ParkingPlaceController {
 
     private ParkingPlace parkingPlace;
@@ -21,21 +23,25 @@ public class ParkingPlaceController {
     {
         parkingPlace.setAvailability(availability);
     }
-
     public boolean getParkingPlaceAvailability()
     {
         return parkingPlace.isAvailable();
     }
-
     public int getParkingPlaceNumber()
     {
         return parkingPlace.getPlaceNumber();
     }
-
-    public void setParkingPlaceNumber(int placeNumber)
-    {
-        parkingPlace.setPlaceNumber(placeNumber);
+    public String getParkingPlaceLicencePlate(){ return parkingPlace.getLicencePlate(); };
+    public String getParkingPlaceVehicleType() {
+        return parkingPlace.getVehicleType();
     }
+    public String getParkingPlaceDiscountType() {
+        return parkingPlace.getDiscountType();
+    }
+    public double getParkingPlacePricePlace(){return parkingPlace.getPricePlace();}
+
+    public GameTicket getParkingPlaceGameTicket(){ return parkingPlace.getGameTicket(); }
+
 
     public void updateView() {
         String placeNumber = String.valueOf(parkingPlace.getPlaceNumber());
@@ -111,9 +117,87 @@ public class ParkingPlaceController {
         newWindow.show();
 
         submitButton.setOnAction(event -> {
-            this.setParkingPlaceAvailability(true);
+            if(this.getParkingPlaceAvailability() == false)
+            {
+                this.setParkingPlaceAvailability(true);
+                this.printTicket();
+            }
             newWindow.close();
         });
     }
 
+    public void printTicket() {
+
+        final double TICKET_PRICE_FOR_MOTORCYCLE = 10;
+        final double TICKET_PRICE_FOR_CAR = 20;
+        final double TICKET_PRICE_FOR_TRUCK = 30;
+
+        String basicPrice;
+        String date;
+        String placeNumber;
+        String vehicleType;
+        String licencePlate;
+        String discountType;
+        String totalPrice;
+        String discountCode;
+        String typeGameTicket;
+        String valueGameTicket;
+
+        /* BASIC PRICE & VEHICLE TYPE*/
+
+        vehicleType = this.getParkingPlaceVehicleType();
+
+        if(vehicleType.equals("Motorcycle"))
+        {
+            basicPrice = String.valueOf(TICKET_PRICE_FOR_MOTORCYCLE);
+
+        }
+        else if(vehicleType.equals("Car"))
+        {
+            basicPrice = String.valueOf(TICKET_PRICE_FOR_CAR);
+        }
+        else
+        {
+            basicPrice = String.valueOf(TICKET_PRICE_FOR_TRUCK);
+        }
+
+        /* DATE */
+
+        String currentDay = String.valueOf(LocalDate.now().getDayOfMonth()); //récupère le jour de la semaine
+        String currentMonth = String.valueOf(LocalDate.now().getMonthValue());
+        String currentYear = String.valueOf(LocalDate.now().getYear());
+
+        date = currentDay + "/" + currentMonth + "/" + currentYear;
+
+        /* PLACE NUMBER */
+
+        placeNumber = String.valueOf(this.getParkingPlaceNumber());
+
+        /* LICENCE PLATE */
+
+        licencePlate = this.getParkingPlaceLicencePlate();
+
+        /* DISCOUNT TYPE */
+
+        discountType = this.getParkingPlaceDiscountType();
+
+        /* TOTAL PRICE */
+
+        totalPrice = String.valueOf(this.getParkingPlacePricePlace());
+
+        /* DISCOUNT CODE */
+
+        discountCode = this.getParkingPlaceGameTicket().getDiscountCode();
+
+        /* TYPE GAME TICKET */
+
+        typeGameTicket = this.getParkingPlaceGameTicket().getTypeGameTicket();
+
+        /* VALUE GAME TICKET */
+
+        valueGameTicket = String.valueOf(this.getParkingPlaceGameTicket().getDiscountValue());
+
+        Receipt receipt = new Receipt(basicPrice, date, placeNumber, vehicleType, licencePlate, discountType, totalPrice, discountCode, typeGameTicket, valueGameTicket);
+        receipt.printReceipt();
+    }
 }

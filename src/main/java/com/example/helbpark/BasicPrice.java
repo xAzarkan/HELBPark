@@ -3,10 +3,10 @@ package com.example.helbpark;
 public class BasicPrice implements PriceStrategy{
 
     @Override
-    public double getTotalPrice(Vehicle vehicle)
+    public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)
     {//prix de base
 
-        double totalPrice = vehicle.getTicketPrice();
+        double totalPrice = basicPrice;
 
         return totalPrice;
     }

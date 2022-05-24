@@ -6,8 +6,9 @@ public class ParkingPlace {
     private boolean isAvailable; //true si la place est libre, faux sinon
     private String vehicleType;
     private String licencePlate;
-
     private double pricePlace;
+    private String discountType;
+    private GameTicket gameTicket;
 
     public ParkingPlace(int placeNumber) {
         this.placeNumber = placeNumber;
@@ -35,10 +36,12 @@ public class ParkingPlace {
         isAvailable = available;
     }
 
-    public void setInformations(String vehicleType, String licencePlate, double pricePlace){
+    public void setInformations(String vehicleType, String licencePlate, double pricePlace, String discountType, GameTicket gameTicket){
         this.vehicleType = vehicleType;
         this.licencePlate = licencePlate;
         this.pricePlace = pricePlace;
+        this.discountType = discountType;
+        this.gameTicket = gameTicket;
     }
 
     public String getVehicleType()
@@ -51,13 +54,15 @@ public class ParkingPlace {
         return this.licencePlate;
     }
 
-    public void setPricePlace(int pricePlace){
-        this.pricePlace = pricePlace;
-    }
-
     public double getPricePlace()
     {
         return pricePlace;
+    }
+
+    public String getDiscountType(){ return discountType; }
+
+    public GameTicket getGameTicket(){
+        return gameTicket;
     }
 
 }

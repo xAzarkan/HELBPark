@@ -2,7 +2,6 @@ package com.example.helbpark;
 
 public class Truck extends Vehicle{
     //camionnette
-    private final int TICKET_PRICE = 30;
     private String vehicleType = "Truck";
 
     public Truck(String licencePlate)
@@ -14,11 +13,5 @@ public class Truck extends Vehicle{
     {
         return vehicleType;
     }
-
-    public int getTicketPrice()
-    {
-        return TICKET_PRICE;
-    }
-
 
 }
