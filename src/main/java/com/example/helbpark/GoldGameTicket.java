@@ -26,13 +26,17 @@ public class GoldGameTicket extends GameTicket{
 
         String[][] gridOfLetters = new String[ROWS_NUMBER][COLUMNS_NUMBER];
 
+        game = "";
+
         for(int row = 0; row < ROWS_NUMBER; row++){
             for(int col = 0; col < COLUMNS_NUMBER; col++)
             {
                 gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length()))); //génère un nombre random pour chaque cellule
+                game += gridOfLetters[row][col];
                 System.out.print(gridOfLetters[row][col]);
             }
             System.out.println();
+            game += "\n";
         }
 
         if(twoSameLettersInSameRow(gridOfLetters)){

@@ -91,14 +91,11 @@ public class ParkingPlaceController {
         VBox layout;
 
         if(parkingPlace.isAvailable())
-        {
             layout = new VBox(labelPlaceState, labelPlaceNumber);
-            layout.setAlignment(Pos.TOP_CENTER);
-        }
-        else{
+        else
             layout = new VBox(labelPlaceState, labelPlaceNumber, labelVehicleType, labelLicencePlate, labelPricePlace);
-            layout.setAlignment(Pos.TOP_CENTER);
-        }
+
+        layout.setAlignment(Pos.TOP_CENTER);
 
         mainLayout.getChildren().addAll(layout, submitButton);
         mainLayout.setAlignment(Pos.TOP_CENTER);
@@ -142,6 +139,7 @@ public class ParkingPlaceController {
         String discountCode;
         String typeGameTicket;
         String valueGameTicket;
+        String game;
 
         /* BASIC PRICE & VEHICLE TYPE*/
 
@@ -162,6 +160,7 @@ public class ParkingPlaceController {
         }
 
         /* DATE */
+
 
         String currentDay = String.valueOf(LocalDate.now().getDayOfMonth()); //récupère le jour de la semaine
         String currentMonth = String.valueOf(LocalDate.now().getMonthValue());
@@ -197,7 +196,11 @@ public class ParkingPlaceController {
 
         valueGameTicket = String.valueOf(this.getParkingPlaceGameTicket().getDiscountValue());
 
-        Receipt receipt = new Receipt(basicPrice, date, placeNumber, vehicleType, licencePlate, discountType, totalPrice, discountCode, typeGameTicket, valueGameTicket);
+        /* GAME */
+
+        game = this.getParkingPlaceGameTicket().getGame();
+
+        Receipt receipt = new Receipt(basicPrice, date, placeNumber, vehicleType, licencePlate, discountType, totalPrice, discountCode, typeGameTicket, valueGameTicket, game);
         receipt.printReceipt();
     }
 }

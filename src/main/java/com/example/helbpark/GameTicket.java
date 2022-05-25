@@ -7,11 +7,12 @@ import java.util.Random;
 public abstract class GameTicket {
     private final int DISCOUNT_CODE_LENGTH = 7;
     protected String typeGameTicket;
-
     protected int discountValue;
-
     protected ArrayList<String> allDiscountCodes = new ArrayList<>();
     private String discountCode;
+
+    protected String game;
+
     public GameTicket() {
         String generatedDiscountCode = createDiscountCode(); //génère un code qr pour chaque gameTicket créé
 
@@ -68,5 +69,10 @@ public abstract class GameTicket {
     }
 
     public int getDiscountValue(){ return discountValue;}
+
+    public String getGame()
+    {
+        return game;
+    }
 
 }

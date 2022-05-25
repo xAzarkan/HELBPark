@@ -37,6 +37,8 @@ public class SilverGameTicket extends GameTicket{
 
         typeGameTicket = "Silver ticket";
 
+        game = twoSymbols;
+
     }
 
 

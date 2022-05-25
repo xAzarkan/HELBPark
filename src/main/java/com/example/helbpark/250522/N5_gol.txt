@@ -1,0 +1,13 @@
+Date: 25/5/2022
+Place number: 3
+Vehicle type: Truck
+Licence plate: N5
+Base price: 30.0€
+Discount : Wednesday : 25% discount for vehicles whose license plate contains the letter P
+Total to pay : 30.0€
+Discount code cinema : V5PV9KV
+Gold ticket : Valeur : 80%
+Game : 
+HLB
+HBL
+EEK

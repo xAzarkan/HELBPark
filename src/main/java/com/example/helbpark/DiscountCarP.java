@@ -2,7 +2,7 @@ package com.example.helbpark;
 
 public class DiscountCarP implements PriceStrategy{
 
-    double discount = 0.25; //25% de reduction
+    double discount = 0.75; //25% de reduction
 
     @Override
     public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)

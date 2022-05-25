@@ -89,7 +89,7 @@ public class Board {
         //du fichier de simulation
 
         Timeline everySecondTimeLine = new Timeline(
-                new KeyFrame(Duration.seconds(1),
+                new KeyFrame(Duration.seconds(1), //toutes les secondes
                         new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {

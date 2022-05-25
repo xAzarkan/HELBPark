@@ -1,0 +1,11 @@
+Date: 25/5/2022
+Place number: 3
+Vehicle type: Motorcycle
+Licence plate: G6
+Base price: 10.0€
+Discount : Wednesday : 25% discount for vehicles whose license plate contains the letter P
+Total to pay : 10.0€
+Discount code cinema : 1NJ1EJP
+Silver ticket : Valeur : 15%
+Game : 
+OX
