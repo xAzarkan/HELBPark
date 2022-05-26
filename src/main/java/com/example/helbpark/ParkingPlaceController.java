@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class ParkingPlaceController {
 
-    private final int BUTTON_WIDTH = 200;
+    private final int BUTTON_WIDTH = 250;
     private final int BUTTON_HEIGHT = 30;
     private final int WINDOW_WIDTH = 400;
     private final int WINDOW_HEIGHT= 600;
@@ -89,11 +89,17 @@ public class ParkingPlaceController {
     }
     public void onButtonClick() {
         //ce qu'il se passe lorsque l'on clique sur une place de parking
-        final String vehicleType = this.getParkingPlaceVehicleType();
-        final String licencePlate = this.getParkingPlaceLicencePlate();
-        final String placeNumber = String.valueOf(this.getParkingPlaceNumber());
-        final String pricePlace = String.valueOf(this.getParkingPlacePricePlace());
-        final boolean isAvailable = this.getParkingPlaceAvailability();
+        String vehicleType = "";
+        String licencePlate = "";
+        String placeNumber = String.valueOf(this.getParkingPlaceNumber());
+        String pricePlace = String.valueOf(this.getParkingPlacePricePlace());
+        boolean isAvailable = this.getParkingPlaceAvailability();
+
+        if(!isAvailable)
+        {
+            vehicleType = this.getParkingPlaceVehicleType();
+            licencePlate = this.getParkingPlaceLicencePlate();
+        }
 
         String placeState = "";
 
