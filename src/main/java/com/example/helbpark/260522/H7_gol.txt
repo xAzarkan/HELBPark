@@ -1,0 +1,13 @@
+Date: 26/5/2022
+Place number: 1
+Vehicle type: Truck
+Licence plate: H7
+Base price: 30.0€
+Discount : THURSDAY : Base price
+Total to pay : 10.0€
+Discount code cinema : H8305E9
+Gold ticket : Valeur : 80%
+Game : 
+LLL
+BRA
+KEL

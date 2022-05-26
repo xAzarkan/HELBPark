@@ -1,0 +1,9 @@
+Date: 26/5/2022
+Place number: 1
+Vehicle type: Motorcycle
+Licence plate: H7
+Base price: 10.0€
+Discount : THURSDAY : Base price
+Total to pay : 10.0€
+Discount code cinema : WMONP5T
+Standard ticket : Valeur : 5%

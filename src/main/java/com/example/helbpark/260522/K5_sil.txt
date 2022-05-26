@@ -1,0 +1,11 @@
+Date: 26/5/2022
+Place number: 13
+Vehicle type: Car
+Licence plate: K5
+Base price: 20.0€
+Discount : THURSDAY : Base price
+Total to pay : 20.0€
+Discount code cinema : G6IH6ZF
+Silver ticket : Valeur : 10%
+Game : 
+OX

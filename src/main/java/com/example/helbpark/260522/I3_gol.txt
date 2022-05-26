@@ -1,0 +1,13 @@
+Date: 26/5/2022
+Place number: 10
+Vehicle type: Truck
+Licence plate: I3
+Base price: 30.0€
+Discount : THURSDAY : Base price
+Total to pay : 30.0€
+Discount code cinema : SLAPSC2
+Gold ticket : Valeur : 80%
+Game : 
+PPE
+LHP
+KPP

@@ -33,16 +33,13 @@ public class GoldGameTicket extends GameTicket{
             {
                 gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length()))); //génère un nombre random pour chaque cellule
                 game += gridOfLetters[row][col];
-                System.out.print(gridOfLetters[row][col]);
             }
-            System.out.println();
             game += "\n";
         }
 
-        if(twoSameLettersInSameRow(gridOfLetters)){
+        if(twoSameLettersInSameRow(gridOfLetters))
             discountValue = discountValue * 2; //réduction doublée
-            System.out.println("reduction doublee !");
-        }
+
 
         typeGameTicket = "Gold ticket";
     }

@@ -1,0 +1,11 @@
+Date: 26/5/2022
+Place number: 12
+Vehicle type: Car
+Licence plate: L0
+Base price: 20.0€
+Discount : THURSDAY : Base price
+Total to pay : 20.0€
+Discount code cinema : 4FPXXUF
+Silver ticket : Valeur : 20%
+Game : 
+XX

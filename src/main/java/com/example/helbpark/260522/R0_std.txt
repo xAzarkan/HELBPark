@@ -1,0 +1,9 @@
+Date: 26/5/2022
+Place number: 2
+Vehicle type: Motorcycle
+Licence plate: R0
+Base price: 10.0€
+Discount : THURSDAY : Base price
+Total to pay : 10.0€
+Discount code cinema : DTI2EGM
+Standard ticket : Valeur : 10%

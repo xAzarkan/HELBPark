@@ -1,0 +1,13 @@
+Date: 26/5/2022
+Place number: 1
+Vehicle type: Truck
+Licence plate: H1
+Base price: 30.0€
+Discount : THURSDAY : Base price
+Total to pay : 30.0€
+Discount code cinema : PPFL6NT
+Gold ticket : Valeur : 80%
+Game : 
+LKA
+EKE
+BHL

@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class Receipt {
     //ticket de caisse
-
     private String basicPrice;
     private String date;
     private String placeNumber;
@@ -38,9 +37,7 @@ public class Receipt {
         this.game = game;
     }
 
-    public void printReceipt()
-    {
-
+    public void printReceipt() {
         Date dateToFormat = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyy");
         String folderName = dateFormat.format(dateToFormat);
@@ -105,4 +102,6 @@ public class Receipt {
             e.printStackTrace();
         }
     }
+
+
 }

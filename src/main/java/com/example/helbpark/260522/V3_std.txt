@@ -1,0 +1,9 @@
+Date: 26/5/2022
+Place number: 1
+Vehicle type: Truck
+Licence plate: V3
+Base price: 30.0€
+Discount : THURSDAY : Base price
+Total to pay : 10.0€
+Discount code cinema : 0X0I0B0
+Standard ticket : Valeur : 5%
