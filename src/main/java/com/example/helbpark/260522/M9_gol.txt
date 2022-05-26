@@ -1,13 +1,13 @@
 Date: 26/5/2022
-Place number: 11
+Place number: 15
 Vehicle type: Truck
-Licence plate: I3
+Licence plate: M9
 Base price: 30.0€
 Discount : THURSDAY : Base price
 Total to pay : 30.0€
-Discount code cinema : ID67FS1
-Gold ticket : Valeur : 20%
+Discount code cinema : WO1QV0G
+Gold ticket : Valeur : 40%
 Game : 
-ARH
-LBA
-RAP
+EBK
+KHP
+EEH

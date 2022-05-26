@@ -1,0 +1,11 @@
+Date: 26/5/2022
+Place number: 11
+Vehicle type: Motorcycle
+Licence plate: V5
+Base price: 10.0€
+Discount : THURSDAY : Base price
+Total to pay : 10.0€
+Discount code cinema : AC3G6ZJ
+Silver ticket : Valeur : 30%
+Game : 
+PP

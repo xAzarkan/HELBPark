@@ -9,9 +9,9 @@ public class HalfPriceEvenDay implements PriceStrategy{
     @Override
     public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)
     {
-        LocalDate currentDate = LocalDate.now(); //récupère le jour actuelle
+        LocalDate currentDate = LocalDate.now();
 
-        int currentDay = currentDate.getDayOfMonth();
+        int currentDay = currentDate.getDayOfMonth(); //récupère le jour actuelle
 
         double totalPrice = basicPrice; //prix de base du véhicule
 

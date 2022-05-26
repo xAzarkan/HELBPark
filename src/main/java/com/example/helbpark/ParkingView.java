@@ -33,7 +33,6 @@ public class ParkingView {
         listOfButtons = new ArrayList<>();
     }
 
-
     public void initParkingView(String placeNumber){
 
         layout = new GridPane();
@@ -88,7 +87,7 @@ public class ParkingView {
     }
 
     public void updateParkingPlace(ParkingPlaceController parkingPlaceController, String placeNumber, Boolean isAvailable, String vehicleType, String licencePlate){
-
+        //fonction permettant de mettre à jour l'affichage d'une place de parking
         String style = "";
 
         for(Button button : listOfButtons)
@@ -126,7 +125,6 @@ public class ParkingView {
             }
         }
     }
-
 
     public GridPane getLayout()
     {

@@ -1,0 +1,9 @@
+Date: 26/5/2022
+Place number: 1
+Vehicle type: Motorcycle
+Licence plate: P7
+Base price: 10.0€
+Discount : Wednesday : 25% discount for vehicles whose licence plate contains the letter P
+Total to pay : 7.5€
+Discount code cinema : OZF9T0L
+Standard ticket : Valeur : 10%

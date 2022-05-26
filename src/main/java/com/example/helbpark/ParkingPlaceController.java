@@ -69,6 +69,7 @@ public class ParkingPlaceController {
         parkingPlace.setDiscountType(discountType);
     }
     public void updateView() {
+        //fonction permettant de mettre à jour la vue (du Parking)
         String placeNumber = String.valueOf(this.getParkingPlaceNumber());
         Boolean available = this.getParkingPlaceAvailability();
 
@@ -176,7 +177,7 @@ public class ParkingPlaceController {
         });
     }
     public void printTicket() {
-
+    //fonction permettant créer un ticket de caisse (Receipt)
         final double TICKET_PRICE_FOR_MOTORCYCLE = 10;
         final double TICKET_PRICE_FOR_CAR = 20;
         final double TICKET_PRICE_FOR_TRUCK = 30;
@@ -257,7 +258,7 @@ public class ParkingPlaceController {
         receipt.printReceipt();
     }
     public double calculateTotalPrice(Vehicle vehicle) {
-
+    //fonction permettant de calculer le prix total de la place en comptant les réductions du jour
         String discountType;
         double totalPrice;
 

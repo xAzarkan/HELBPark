@@ -4,7 +4,7 @@ public class BasicPrice implements PriceStrategy{
 
     @Override
     public double getTotalPrice(double basicPrice, String vehicleType, String licencePlate)
-    {//prix de base
+    {//retourne le prix de base
 
         double totalPrice = basicPrice;
 

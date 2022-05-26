@@ -9,8 +9,7 @@ public class HalfPriceTruck implements PriceStrategy{
     {
         double totalPrice = basicPrice;
 
-        if(vehicleType.equals("Truck"))
-        {
+        if(vehicleType.equals("Truck")) {
             totalPrice = totalPrice * discount;
         }
 

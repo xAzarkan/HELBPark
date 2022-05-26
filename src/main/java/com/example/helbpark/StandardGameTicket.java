@@ -12,12 +12,9 @@ public class StandardGameTicket extends GameTicket{
         int randomNumber = (int)(Math.random()* MAX_RANDOM); //génère un nombre random
 
         if(randomNumber%2 == 0) //si le nombre généré est pair
-        {
             discountValue = 5; //5% de réduction
-        }
-        else{
+        else
             discountValue = 10; //10% de réduction
-        }
 
         typeGameTicket = "Standard ticket";
     }

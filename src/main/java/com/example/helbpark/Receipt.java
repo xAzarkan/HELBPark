@@ -41,7 +41,6 @@ public class Receipt {
         Date dateToFormat = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyy");
         String folderName = dateFormat.format(dateToFormat);
-        //System.out.println(folderName);
 
         String fileName = licencePlate;
         if(typeGameTicket.equals("Gold ticket"))
@@ -51,19 +50,17 @@ public class Receipt {
         else
             fileName += "_std.txt";
 
-        //System.out.println(fileName);
 
         /*_________CREATION DU FICHIER TXT______________*/
 
         File folder = new File(folderName);
 
-        if(!folder.exists()){
+        if(!folder.exists()){ //création du dossier du jour si il n'existe pas
             folder.mkdir();
-            System.out.println("folder created");
         }
 
         try {
-            File file = new File(folderName, fileName);
+            File file = new File(folderName, fileName); //création du fichier dans le dossier du jour
 
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
@@ -78,6 +75,7 @@ public class Receipt {
 
         /*_________WRITE IN THE FILE__________*/
 
+        // --> contentOfReceipt --> contenu du ticket de caisse
         String contentOfReceipt = "Date: " + date + "\n"
                 + "Place number: " + placeNumber + "\n"
                 + "Vehicle type: " + vehicleType + "\n"
@@ -89,16 +87,14 @@ public class Receipt {
                 + typeGameTicket + " : Valeur : " + valueGameTicket + "%" + "\n";
 
         if(typeGameTicket.equals("Silver ticket") || typeGameTicket.equals("Gold ticket"))
-            contentOfReceipt += "Game : \n" + game;
+            contentOfReceipt += "Game : \n" + game; //rajoute le jeu si c'est un ticket silver ou gold
 
         try
         {
-            FileWriter fileWriter = new FileWriter(new File(folderName, fileName));
+            FileWriter fileWriter = new FileWriter(new File(folderName, fileName)); //écriture dans le fichier
             fileWriter.write(contentOfReceipt);
             fileWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }

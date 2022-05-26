@@ -1,6 +1,7 @@
 package com.example.helbpark;
 
 public class VehicleFactory {
+    //fabrique de Vehicule
     //utilisation du pattern factory
     private static VehicleFactory vehicleFactory;
 
@@ -20,15 +21,12 @@ public class VehicleFactory {
     public Vehicle create(String typeVehicle, String licencePlate){
 
         if(typeVehicle.equals("moto") || typeVehicle.equals("Motorcycle")){
-            System.out.println("moto, plaque : " +  licencePlate);
             return new Motorcycle(licencePlate);
         }
         else if(typeVehicle.equals("voiture") || typeVehicle.equals("Car")) {
-            System.out.println("voiture, plaque : " +  licencePlate);
             return new Car(licencePlate);
         }
         else if(typeVehicle.equals("camionette") || typeVehicle.equals("Truck")) {
-            System.out.println("camionette, plaque : " +  licencePlate);
             return new Truck(licencePlate);
         }
 

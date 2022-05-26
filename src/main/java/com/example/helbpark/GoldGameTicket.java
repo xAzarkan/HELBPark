@@ -15,12 +15,9 @@ public class GoldGameTicket extends GameTicket{
         int randomNumber = (int)(Math.random()* MAX_RANDOM); //génère un nombre random
 
         if(randomNumber%2 == 0) //si le nombre généré est pair
-        {
             discountValue = 20; //20% de réduction
-        }
-        else{
+        else
             discountValue = 40; //40% de réduction
-        }
 
         Random random = new Random();
 
@@ -31,52 +28,45 @@ public class GoldGameTicket extends GameTicket{
         for(int row = 0; row < ROWS_NUMBER; row++){
             for(int col = 0; col < COLUMNS_NUMBER; col++)
             {
-                gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length()))); //génère un nombre random pour chaque cellule
+                gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length()))); //génère une lettre random de "PARKHELB" pour chaque cellule
                 game += gridOfLetters[row][col];
             }
             game += "\n";
         }
 
-        if(twoSameLettersInSameRow(gridOfLetters))
+        if(twoSameLettersInSameRowOrColumn(gridOfLetters))
             discountValue = discountValue * 2; //réduction doublée
-
 
         typeGameTicket = "Gold ticket";
     }
 
-    public boolean twoSameLettersInSameRow(String[][] gridOfLetters)
-    {
+    public boolean twoSameLettersInSameRowOrColumn(String[][] gridOfLetters)
+    { //ATTENTION : solution pas modulaire du tout --> si j'augmente la taille de la grid, ca ne fonctionne plus
+
         int indexFirstLetter = 0;
         int indexSecondLetter = 1;
         int indexThirdLetter = 2;
 
-        /* VERIFICATION DES LIGNES */
 
-        for(int row = 0; row < gridOfLetters.length; row++){
+        for(int cel = 0; cel < gridOfLetters.length; cel++){
 
-            String firstLetter = gridOfLetters[row][indexFirstLetter];
-            String secondLetter = gridOfLetters[row][indexSecondLetter];
-            String thirdLetter = gridOfLetters[row][indexThirdLetter];
+            /* pour les lignes */
+            String firstLetterRow = gridOfLetters[cel][indexFirstLetter];
+            String secondLetterRow = gridOfLetters[cel][indexSecondLetter];
+            String thirdLetterRow = gridOfLetters[cel][indexThirdLetter];
 
-            if(firstLetter.equals(secondLetter) || firstLetter.equals(thirdLetter) || secondLetter.equals(thirdLetter))
+            /* pour les colonnes */
+            String firstLetterColumn = gridOfLetters[indexFirstLetter][cel];
+            String secondLetterColumn = gridOfLetters[indexSecondLetter][cel];
+            String thirdLetterColumn = gridOfLetters[indexThirdLetter][cel];
+
+            if(firstLetterRow.equals(secondLetterRow) || firstLetterRow.equals(thirdLetterRow) || secondLetterRow.equals(thirdLetterRow) ||
+                    firstLetterColumn.equals(secondLetterColumn) || firstLetterColumn.equals(thirdLetterColumn) || secondLetterColumn.equals(thirdLetterColumn))
             {
                 return true;
             }
         }
 
-        /* VERIFICATION DES COLONNES */
-
-        for(int col = 0; col < gridOfLetters.length; col++){
-
-            String firstLetter = gridOfLetters[indexFirstLetter][col];
-            String secondLetter = gridOfLetters[indexSecondLetter][col];
-            String thirdLetter = gridOfLetters[indexThirdLetter][col];
-
-            if(firstLetter.equals(secondLetter) || firstLetter.equals(thirdLetter) || secondLetter.equals(thirdLetter))
-            {
-                return true;
-            }
-        }
         return false;
     }
 
