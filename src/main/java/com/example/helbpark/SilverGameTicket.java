@@ -22,18 +22,19 @@ public class SilverGameTicket extends GameTicket{
         String twoSymbols = "";
         for(int i = 0; i < TWO_SYMBOLS_LENGTH; i++)
         {
-            twoSymbols += letters.charAt(random.nextInt(letters.length())); //lettre aléatoire en O X et P (voir variable "letters")
+            //lettre aléatoire en O,X et P (voir variable "letters")
+            twoSymbols += letters.charAt(random.nextInt(letters.length()));
         }
 
         int indexFirstSymbol = 0; //position du premier symbole dans la chaine de caractère
         int indexSecondSymbol = 1; //position du deuxième symbole dans la chaine de caractère
 
-        if(twoSymbols.charAt(indexFirstSymbol) == twoSymbols.charAt(indexSecondSymbol)){ //si les deux symboles sont égaux
+        if(twoSymbols.charAt(indexFirstSymbol) == twoSymbols.charAt(indexSecondSymbol)){
+            //si les deux symboles sont égaux
             discountValue = discountValue * 2; //multiplie la valeur par 2
         }
 
         typeGameTicket = "Silver ticket";
-
         game = twoSymbols;
     }
 

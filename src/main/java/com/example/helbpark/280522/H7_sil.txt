@@ -1,0 +1,11 @@
+Date: 28/5/2022
+Place number: 1
+Vehicle type: Motorcycle
+Licence plate: H7
+Base price: 10.0€
+Discount : Saturday : If the day is even, half price, otherwise base price.
+Total to pay : 5.0€
+Discount code cinema : 2TELI10
+Silver ticket : Valeur : 10%
+Game : 
+XP

@@ -1,8 +1,8 @@
 package com.example.helbpark;
 
 public class VehicleFactory {
-    //fabrique de Vehicule
-    //utilisation du pattern factory
+    //fabrique de véhicules
+    //application du pattern factory
     private static VehicleFactory vehicleFactory;
 
     private VehicleFactory()
@@ -10,7 +10,8 @@ public class VehicleFactory {
 
     }
 
-    public static VehicleFactory getInstance(){ //permet d'assurer le pattern Singleton
+    public static VehicleFactory getInstance(){
+        //pattern singleton
         if(vehicleFactory == null)
             vehicleFactory = new VehicleFactory();
 
@@ -33,3 +34,5 @@ public class VehicleFactory {
         return null;
     }
 }
+
+

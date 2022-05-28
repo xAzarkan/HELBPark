@@ -1,7 +1,6 @@
 package com.example.helbpark;
 
 public class PlacePrice {
-
     private final double TICKET_PRICE_FOR_MOTORCYCLE = 10;
     private final double TICKET_PRICE_FOR_CAR = 20;
     private final double TICKET_PRICE_FOR_TRUCK = 30;

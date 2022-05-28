@@ -1,0 +1,14 @@
+Date: 27/5/2022
+Place number: 2
+Vehicle type: Truck
+Licence plate: R0
+Base price: 30.0€
+Discount : Friday : Half price for trucks
+Total to pay : 15.0€
+Discount code cinema : 720MW0X
+Gold ticket : Valeur : 40%
+Game : 
+KHP
+LAP
+HHL
+

@@ -51,8 +51,8 @@ public class ParkingView {
         Label appTitle = new Label("HELB Park");
         appTitle.setStyle(STYLE_APP_TITLE);
 
-        Button button = new Button(placeNumber);
-        //vert car la place sera obligatoirement libre au début
+        Button button = new Button(placeNumber);  //vert car la place sera obligatoirement libre au début
+
 
         button.setId(placeNumber);
         button.setPrefWidth(BUTTON_WIDTH);
@@ -67,7 +67,7 @@ public class ParkingView {
         {
             parkingGridPane.add(btn, col, row); //ajout du bouton dans le gridpane
 
-            if(col < NUMBER_OF_COLUMNS)
+            if(col < NUMBER_OF_COLUMNS) // toujours un nombre défini de colonne (ici 4)
             {
                 col++;
             }

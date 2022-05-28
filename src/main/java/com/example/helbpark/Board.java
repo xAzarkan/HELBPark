@@ -58,7 +58,6 @@ public class Board {
         //lecture du fichier de simulation
 
         try{
-            //String simFilePath = new File("simfile.txt").getAbsolutePath();
             File file = new File("simfile.txt");
 
             BufferedReader buffReader = new BufferedReader(new FileReader(file));
@@ -87,7 +86,7 @@ public class Board {
 
         Timeline everySecondTimeLine = new Timeline(
                 new KeyFrame(Duration.seconds(1), //toutes les secondes
-                        new EventHandler<ActionEvent>() {
+                        new EventHandler<>() {
                             @Override
                             public void handle(ActionEvent event) {
 
@@ -106,8 +105,8 @@ public class Board {
                                         Vehicle vehicle = VehicleFactory.getInstance().create(vehicleType, licencePlate);
                                         parkVehicle(vehicle);
 
-                                        elapsedSeconds = 0;
-                                        indexOfSimFileContent++;
+                                        elapsedSeconds = 0; //je remets les secondes à 0
+                                        indexOfSimFileContent++; //à la ligne suivante du fichier de simulation
                                     }
                                     elapsedSeconds++;
                                 }
@@ -124,8 +123,8 @@ public class Board {
         { //parcours toutes les places de parking
             if(parkingPlace.isAvailable())
             { //si une place est libre
-                parkingPlace.setAvailability(false);
-                parkingPlace.setVehicle(vehicle);
+                parkingPlace.setAvailability(false); //la place de parking n'est plus disponible
+                parkingPlace.setVehicle(vehicle); //place le véhicule dans la place de parking
                 break;
             }
         }

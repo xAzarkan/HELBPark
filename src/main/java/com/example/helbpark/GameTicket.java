@@ -1,6 +1,5 @@
 package com.example.helbpark;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -34,24 +33,22 @@ public abstract class GameTicket {
 
         String generatedDiscountCode = "";
 
-        char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
+        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray();
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        Random random = new SecureRandom(); //source : https://stackoverflow.com/questions/31213329/generation-of-referral-or-coupon-code
+        Random random = new Random();
 
         for (int i = 0; i < DISCOUNT_CODE_LENGTH; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            stringBuilder.append(c);
+            char c = characters[random.nextInt(characters.length)];
+            generatedDiscountCode += c;
         }
-
-        generatedDiscountCode = stringBuilder.toString();
-        System.out.println(generatedDiscountCode);
 
         return generatedDiscountCode;
     }
 
+
     public boolean discountCodeAlreadyExists(String code) {
+        //retourne vrai si le code promo existe déjà
+
         boolean discountCodeExists = false;
 
         for(String discountCode : allDiscountCodes)

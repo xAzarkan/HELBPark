@@ -1,8 +1,5 @@
 package com.example.helbpark;
 
-import java.security.SecureRandom;
-import java.util.Random;
-
 public class StandardGameTicket extends GameTicket{
 
     public StandardGameTicket()

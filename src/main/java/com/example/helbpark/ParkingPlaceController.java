@@ -69,7 +69,7 @@ public class ParkingPlaceController {
         parkingPlace.setDiscountType(discountType);
     }
     public void updateView() {
-        //fonction permettant de mettre à jour la vue (du Parking)
+        //méthode permettant de mettre à jour la vue (du Parking)
         String placeNumber = String.valueOf(this.getParkingPlaceNumber());
         Boolean available = this.getParkingPlaceAvailability();
 
@@ -79,13 +79,13 @@ public class ParkingPlaceController {
         if(!available)
         {
             Vehicle vehicle = this.getParkingPlaceVehicle();
-            this.setParkingPlacePrice(calculateTotalPrice(vehicle)); //je mets à jour le prix chaque seconde (dans le cas d'un changement)
+            this.setParkingPlacePrice(calculateTotalPrice(vehicle)); //calcul du prix de la place
 
             vehicleType = this.getParkingPlaceVehicleType();
             licencePlate = this.getParkingPlaceLicencePlate();
         }
 
-        parkingView.updateParkingPlace(this, placeNumber, available, vehicleType, licencePlate); //ça évite à la vue de connaitre le modèle
+        parkingView.updateParkingPlace(this, placeNumber, available, vehicleType, licencePlate);
     }
     public void onButtonClick() {
         //ce qu'il se passe lorsque l'on clique sur une place de parking
@@ -207,7 +207,6 @@ public class ParkingPlaceController {
         if(vehicleType.equals("Motorcycle"))
         {
             basicPrice = String.valueOf(TICKET_PRICE_FOR_MOTORCYCLE);
-
         }
         else if(vehicleType.equals("Car"))
         {
@@ -261,7 +260,7 @@ public class ParkingPlaceController {
         game = gameTicket.getGame();
 
         Receipt receipt = new Receipt(basicPrice, date, placeNumber, vehicleType, licencePlate, discountType, totalPrice, discountCode, typeGameTicket, valueGameTicket, game);
-        receipt.printReceipt();
+        receipt.printReceipt(); //on enregistre le ticket créé
     }
     public double calculateTotalPrice(Vehicle vehicle) {
     //fonction permettant de calculer le prix total de la place en comptant les réductions du jour
@@ -298,23 +297,26 @@ public class ParkingPlaceController {
             discountType = currentDay + " : Base price";
         }
 
-        totalPrice = placePrice.executePriceStrategy(vehicle);
+        totalPrice = placePrice.executePriceStrategy(vehicle); //éxecution de la stratégie de prix
 
-        this.setParkingPlaceDiscountType(discountType);
+        this.setParkingPlaceDiscountType(discountType); //type de réduction
 
         return totalPrice;
     }
+
     public GameTicket generateGameTicket(String vehicleType) {
+        //méthode permettant de générer un ticket jeu --> retourne un GameTicket
         final int MAX_RANDOM_VALUE = 10;
         GameTicket gameTicket;
 
         Random random = new Random();
-        int randomNumber = random.nextInt(MAX_RANDOM_VALUE);
+        int randomNumber = random.nextInt(MAX_RANDOM_VALUE); //génère un nombre entre 0 et 10
 
         int CHANCE = 4;
 
         if(randomNumber >= CHANCE){
             //chaque véhicule a plus de chance d'obtenir un certain ticket
+            //si le nombre généré est plus grand ou égal à 4 alors c'est le ticket qui a le plus de chance d'être créé qui est créé
             if(vehicleType.equals("Motorcycle"))
                 gameTicket = new StandardGameTicket();
             else if(vehicleType.equals("Car"))
@@ -323,22 +325,23 @@ public class ParkingPlaceController {
                 gameTicket = new GoldGameTicket();
         }
         else{
+            //si le nombre généré est plus petit que 4
             if(vehicleType.equals("Motorcycle")) {
-                if(randomNumber%2 == 0)
+                if(randomNumber%2 == 0) //si le nombre est pair
                     gameTicket = new SilverGameTicket();
-                else
+                else //sinon
                     gameTicket = new GoldGameTicket();
             }
             else if(vehicleType.equals("Car")){
-                if(randomNumber%2 == 0)
+                if(randomNumber%2 == 0) //si le nombre est pair
                     gameTicket = new StandardGameTicket();
-                else
+                else //sinon
                     gameTicket = new GoldGameTicket();
             }
             else{
-                if(randomNumber%2 == 0)
+                if(randomNumber%2 == 0) //si le nombre est pair
                     gameTicket = new StandardGameTicket();
-                else
+                else //sinon
                     gameTicket = new SilverGameTicket();
             }
         }
@@ -380,14 +383,14 @@ public class ParkingPlaceController {
         newWindow.show(); //affichage de la fenêtre pour éditer la place de parking
 
         saveChanges.setOnAction(event -> {
-            if(vehicleTypeComboBox.getValue() != null)
+            if(vehicleTypeComboBox.getValue() != null) //si l'utilisateur a choisi quelque chose
             {
-                String licencePlate = this.getParkingPlaceLicencePlate();
-                String vehicleType = vehicleTypeComboBox.getValue().toString();
+                String licencePlate = this.getParkingPlaceLicencePlate(); //récupère la plaque d'immatriculation du véhicule
+                String vehicleType = vehicleTypeComboBox.getValue().toString(); //récupère le type de véhicule choisi
 
-                Vehicle vehicle = VehicleFactory.getInstance().create(vehicleType, licencePlate); //je créé un nouveau véhicule d'un autre type
+                Vehicle vehicle = VehicleFactory.getInstance().create(vehicleType, licencePlate); //je créé un nouveau véhicule du type choisi
 
-                this.setParkingPlaceVehicle(vehicle);
+                this.setParkingPlaceVehicle(vehicle); //je réassigne le nouveau type de vehicule à la place de parking
                 newWindow.close();
             }
         });
@@ -439,3 +442,4 @@ public class ParkingPlaceController {
         });
     }
 }
+

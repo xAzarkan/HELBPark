@@ -28,7 +28,8 @@ public class GoldGameTicket extends GameTicket{
         for(int row = 0; row < ROWS_NUMBER; row++){
             for(int col = 0; col < COLUMNS_NUMBER; col++)
             {
-                gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length()))); //génère une lettre random de "PARKHELB" pour chaque cellule
+                //génère une lettre random de "PARKHELB" pour chaque cellule
+                gridOfLetters[row][col] = String.valueOf(letters.charAt(random.nextInt(letters.length())));
                 game += gridOfLetters[row][col];
             }
             game += "\n";
@@ -40,13 +41,13 @@ public class GoldGameTicket extends GameTicket{
         typeGameTicket = "Gold ticket";
     }
 
+
     public boolean twoSameLettersInSameRowOrColumn(String[][] gridOfLetters)
     { //ATTENTION : solution pas modulaire du tout --> si j'augmente la taille de la grid, ca ne fonctionne plus
 
         int indexFirstLetter = 0;
         int indexSecondLetter = 1;
         int indexThirdLetter = 2;
-
 
         for(int cel = 0; cel < gridOfLetters.length; cel++){
 

@@ -1,0 +1,13 @@
+Date: 28/5/2022
+Place number: 1
+Vehicle type: Car
+Licence plate: H7
+Base price: 20.0€
+Discount : Saturday : If the day is even, half price, otherwise base price.
+Total to pay : 10.0€
+Discount code cinema : AZ6MCSM
+Gold ticket : Valeur : 40%
+Game : 
+LPP
+RLK
+LBB

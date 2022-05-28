@@ -39,7 +39,7 @@ public class Receipt {
 
     public void printReceipt() {
         Date dateToFormat = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyy"); //format de la date pour le dossier
         String folderName = dateFormat.format(dateToFormat);
 
         String fileName = licencePlate;
@@ -73,7 +73,7 @@ public class Receipt {
             e.printStackTrace();
         }
 
-        /*_________WRITE IN THE FILE__________*/
+        /*_________ECRITURE DANS LE FICHIER TXT__________*/
 
         // --> contentOfReceipt --> contenu du ticket de caisse
         String contentOfReceipt = "Date: " + date + "\n"
